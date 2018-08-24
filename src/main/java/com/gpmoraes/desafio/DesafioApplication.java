@@ -1,4 +1,4 @@
-package com.gpmoraes.desafio.Desafio;
+package com.gpmoraes.desafio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
