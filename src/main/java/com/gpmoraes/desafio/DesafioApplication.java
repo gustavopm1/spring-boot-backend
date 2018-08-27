@@ -1,8 +1,12 @@
 package com.gpmoraes.desafio;
 
 import com.gpmoraes.desafio.domain.Categoria;
+import com.gpmoraes.desafio.domain.Cidade;
+import com.gpmoraes.desafio.domain.Estado;
 import com.gpmoraes.desafio.domain.Produto;
 import com.gpmoraes.desafio.repositories.CategoriaRepository;
+import com.gpmoraes.desafio.repositories.CidadeRepository;
+import com.gpmoraes.desafio.repositories.EstadoRepository;
 import com.gpmoraes.desafio.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +22,10 @@ public class DesafioApplication implements CommandLineRunner {
     private CategoriaRepository categoriaRepository;
     @Autowired
 	private ProdutoRepository produtoRepository;
+    @Autowired
+	private EstadoRepository estadoRepository;
+    @Autowired
+	private CidadeRepository cidadeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DesafioApplication.class, args);
@@ -40,8 +48,22 @@ public class DesafioApplication implements CommandLineRunner {
 		p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null,"São Paulo");
+
+		Cidade c1 = new Cidade(null,"Uberlândia", est1);
+		Cidade c2 = new Cidade(null,"São Paulo", est2);
+		Cidade c3 = new Cidade(null,"Campinas",est2);
+
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+
+		est1.getCidades().addAll(Arrays.asList(c1));
+		est2.getCidades().addAll(Arrays.asList(c2,c3));
+
+		estadoRepository.saveAll(Arrays.asList(est1,est2));
+		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+
 
 	}
 }
