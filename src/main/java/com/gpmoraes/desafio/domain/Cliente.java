@@ -1,5 +1,6 @@
 package com.gpmoraes.desafio.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gpmoraes.desafio.domain.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Cliente implements Serializable {
     private String CpfOuCnpj;
     private Integer tipo;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
