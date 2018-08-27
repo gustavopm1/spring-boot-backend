@@ -1,6 +1,7 @@
 package com.gpmoraes.desafio.services;
 
 import com.gpmoraes.desafio.domain.Categoria;
+import com.gpmoraes.desafio.dto.CategoriaDTO;
 import com.gpmoraes.desafio.repositories.CategoriaRepository;
 import com.gpmoraes.desafio.services.Exceptions.DataIntegrityException;
 import com.gpmoraes.desafio.services.Exceptions.ObjectNotFoundException;
@@ -52,5 +53,9 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDTO){
+        return new Categoria(objDTO.getId(), objDTO.getNome());
     }
 }
