@@ -1,13 +1,8 @@
 package com.gpmoraes.desafio;
 
-import com.gpmoraes.desafio.domain.Categoria;
-import com.gpmoraes.desafio.domain.Cidade;
-import com.gpmoraes.desafio.domain.Estado;
-import com.gpmoraes.desafio.domain.Produto;
-import com.gpmoraes.desafio.repositories.CategoriaRepository;
-import com.gpmoraes.desafio.repositories.CidadeRepository;
-import com.gpmoraes.desafio.repositories.EstadoRepository;
-import com.gpmoraes.desafio.repositories.ProdutoRepository;
+import com.gpmoraes.desafio.domain.*;
+import com.gpmoraes.desafio.domain.enums.TipoCliente;
+import com.gpmoraes.desafio.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,6 +21,10 @@ public class DesafioApplication implements CommandLineRunner {
 	private EstadoRepository estadoRepository;
     @Autowired
 	private CidadeRepository cidadeRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DesafioApplication.class, args);
@@ -64,6 +63,18 @@ public class DesafioApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
+        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
-	}
+        Endereco e1 = new Endereco(null,"Rua Flores", "300","Apto 303", "Jardim", "38220834", cli1, c1);
+        Endereco e2 = new Endereco(null,"Avenida Matos", "105","Sala 800", "Centro", "38777012", cli1, c2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+
+        clienteRepository.saveAll(Arrays.asList(cli1));
+        enderecoRepository.saveAll(Arrays.asList(e1,e2));
+
+
+
+    }
 }
