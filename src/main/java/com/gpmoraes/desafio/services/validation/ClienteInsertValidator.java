@@ -1,9 +1,12 @@
 package com.gpmoraes.desafio.services.validation;
 
+import com.gpmoraes.desafio.domain.Cliente;
 import com.gpmoraes.desafio.domain.enums.TipoCliente;
 import com.gpmoraes.desafio.dto.ClienteNewDTO;
+import com.gpmoraes.desafio.repositories.ClienteRepository;
 import com.gpmoraes.desafio.resources.exception.FieldMessage;
 import com.gpmoraes.desafio.services.validation.utils.BR;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -11,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
+
+    @Autowired
+    private ClienteRepository repo;
+
     @Override
     public void initialize(ClienteInsert ann) {
     }
@@ -26,6 +33,10 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
             list.add(new FieldMessage("cpfOuCnpj", "CNPJ Inválido"));
         }
 
+        Cliente aux = repo.findByEmail(objDto.getEmail());
+        if(aux != null){
+            list.add(new FieldMessage("email","Email já existente"));
+        }
 
         for (FieldMessage e : list) {
             context.disableDefaultConstraintViolation();
