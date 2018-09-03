@@ -1,12 +1,20 @@
 package com.gpmoraes.desafio.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -16,6 +24,13 @@ public class Produto implements Serializable {
     private Integer id;
     private String nome;
     private double preco;
+
+
+    public Produto(Integer id, String nome, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
 
     @JsonIgnore
     @ManyToMany
@@ -30,15 +45,6 @@ public class Produto implements Serializable {
     private Set<ItemPedido> itens = new HashSet<>();
 
 
-    public Produto() {
-    }
-
-    public Produto(Integer id, String nome, double preco) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-    }
-
     @JsonIgnore
     public List<Pedido> getPedidos(){
         List<Pedido> lista = new ArrayList<>();
@@ -46,46 +52,6 @@ public class Produto implements Serializable {
             lista.add(x.getPedido());
         }
         return lista;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    public Set<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(Set<ItemPedido> itens) {
-        this.itens = itens;
     }
 
     @Override
