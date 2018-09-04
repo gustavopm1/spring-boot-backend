@@ -6,7 +6,7 @@ import com.gpmoraes.desafio.domain.Categoria;
 import com.gpmoraes.desafio.domain.Produto;
 import com.gpmoraes.desafio.repositories.CategoriaRepository;
 import com.gpmoraes.desafio.repositories.ProdutoRepository;
-import com.gpmoraes.desafio.services.Exceptions.ObjectNotFoundException;
+import com.gpmoraes.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

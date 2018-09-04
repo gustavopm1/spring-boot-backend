@@ -1,18 +1,15 @@
 package com.gpmoraes.desafio.services;
 
-import com.gpmoraes.desafio.domain.Categoria;
 import com.gpmoraes.desafio.domain.Cidade;
 import com.gpmoraes.desafio.domain.Cliente;
 import com.gpmoraes.desafio.domain.Endereco;
 import com.gpmoraes.desafio.domain.enums.TipoCliente;
-import com.gpmoraes.desafio.dto.CategoriaDTO;
 import com.gpmoraes.desafio.dto.ClienteDTO;
 import com.gpmoraes.desafio.dto.ClienteNewDTO;
-import com.gpmoraes.desafio.repositories.CidadeRepository;
 import com.gpmoraes.desafio.repositories.ClienteRepository;
 import com.gpmoraes.desafio.repositories.EnderecoRepository;
-import com.gpmoraes.desafio.services.Exceptions.DataIntegrityException;
-import com.gpmoraes.desafio.services.Exceptions.ObjectNotFoundException;
+import com.gpmoraes.desafio.services.exceptions.DataIntegrityException;
+import com.gpmoraes.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;

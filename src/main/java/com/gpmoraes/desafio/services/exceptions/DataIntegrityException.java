@@ -1,4 +1,4 @@
-package com.gpmoraes.desafio.services.Exceptions;
+package com.gpmoraes.desafio.services.exceptions;
 
 public class DataIntegrityException extends RuntimeException {
     private static final long serialVersionUID = 1L;

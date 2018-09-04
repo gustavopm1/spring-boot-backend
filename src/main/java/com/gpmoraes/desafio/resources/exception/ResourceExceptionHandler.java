@@ -1,7 +1,7 @@
 package com.gpmoraes.desafio.resources.exception;
 
-import com.gpmoraes.desafio.services.Exceptions.DataIntegrityException;
-import com.gpmoraes.desafio.services.Exceptions.ObjectNotFoundException;
+import com.gpmoraes.desafio.services.exceptions.DataIntegrityException;
+import com.gpmoraes.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

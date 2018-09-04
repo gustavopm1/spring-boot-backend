@@ -1,15 +1,13 @@
 package com.gpmoraes.desafio.services;
 
 import com.gpmoraes.desafio.domain.ItemPedido;
-import com.gpmoraes.desafio.domain.Pagamento;
 import com.gpmoraes.desafio.domain.PagamentoComBoleto;
 import com.gpmoraes.desafio.domain.Pedido;
 import com.gpmoraes.desafio.domain.enums.EstadoPagamento;
 import com.gpmoraes.desafio.repositories.ItemPedidoRepository;
 import com.gpmoraes.desafio.repositories.PagamentoRepository;
 import com.gpmoraes.desafio.repositories.PedidoRepository;
-import com.gpmoraes.desafio.repositories.ProdutoRepository;
-import com.gpmoraes.desafio.services.Exceptions.ObjectNotFoundException;
+import com.gpmoraes.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
