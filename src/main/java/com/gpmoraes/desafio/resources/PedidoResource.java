@@ -18,6 +18,7 @@ public class PedidoResource {
     @Autowired
     private PedidoService service;
 
+    //Endpoint para buscar um pedido pelo seu ID
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public ResponseEntity<Pedido> find(@PathVariable Integer id){
 
@@ -26,6 +27,7 @@ public class PedidoResource {
 
     }
 
+    //Endpoint para inserir um novo pedido
     @RequestMapping(method = RequestMethod.POST)
     @Transactional
     public ResponseEntity<Void> insert(@Valid @RequestBody Pedido obj) {

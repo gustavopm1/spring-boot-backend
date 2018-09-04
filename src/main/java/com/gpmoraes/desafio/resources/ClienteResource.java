@@ -24,6 +24,7 @@ public class ClienteResource {
     @Autowired
     private ClienteService service;
 
+    //Endpoint para buscar um cliente pelo ID
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public ResponseEntity<Cliente> find(@PathVariable Integer id){
 
@@ -31,6 +32,7 @@ public class ClienteResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    //Endpoint para inserir um novo cliente
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
         Cliente obj = service.fromDTO(objDto);
@@ -40,6 +42,7 @@ public class ClienteResource {
         return ResponseEntity.created(uri).build();
     }
 
+    //Endpoint para atualizar os dados de um cliente
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT )
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
         Cliente obj = service.fromDTO(objDto);
@@ -48,12 +51,14 @@ public class ClienteResource {
         return ResponseEntity.noContent().build();
     }
 
+    //Endpoint para deletar um cliente pelo id
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
+    //Endpoint para exibir todos os clientes cadastrados
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ClienteDTO>> findAll(){
         List<Cliente> list = service.findAll();
@@ -61,6 +66,7 @@ public class ClienteResource {
         return ResponseEntity.ok().body(listDto);
     }
 
+    //Endpoint para realizar a busca paginada dos clientes
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ResponseEntity<Page<ClienteDTO>> findPage(
             @RequestParam(value = "page", defaultValue = "0") Integer page,

@@ -2,12 +2,20 @@ package com.gpmoraes.desafio.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gpmoraes.desafio.domain.enums.TipoCliente;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,8 +41,6 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    public Cliente() {
-    }
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
         this.id = id;
@@ -42,70 +48,6 @@ public class Cliente implements Serializable {
         this.email = email;
         CpfOuCnpj = cpfOuCnpj;
         this.tipo = (tipo==null) ? null : tipo.getCod();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpfOuCnpj() {
-        return CpfOuCnpj;
-    }
-
-    public void setCpfOuCnpj(String cpfOuCnpj) {
-        CpfOuCnpj = cpfOuCnpj;
-    }
-
-    public TipoCliente getTipo() {
-        return TipoCliente.toEnum(tipo);
-    }
-
-    public void setTipo(TipoCliente tipo) {
-        this.tipo = tipo.getCod();
-    }
-
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-    public Set<String> getTelefones() {
-        return telefones;
-    }
-
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
-    public void setTelefones(Set<String> telefones) {
-        this.telefones = telefones;
     }
 
     @Override

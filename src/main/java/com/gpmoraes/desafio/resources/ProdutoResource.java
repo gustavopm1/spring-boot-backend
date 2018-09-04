@@ -18,12 +18,14 @@ public class ProdutoResource {
     @Autowired
     private ProdutoService service;
 
+    //Endpoint para buscar um produto pelo seu ID
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public ResponseEntity<Produto> find(@PathVariable Integer id) {
         Produto obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
+    //Endpoint para realizar uma busca paginada de um produto pelo seu ID
     @RequestMapping(method=RequestMethod.GET)
     public ResponseEntity<Page<ProdutoDTO>> findPage(
             @RequestParam(value="nome", defaultValue="") String nome,
